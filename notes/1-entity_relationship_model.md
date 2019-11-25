@@ -19,10 +19,13 @@ Entities represent things which can *individually* exist in the real world.
 - Entities are instances of an entity type (like an Object in OOP)
 
 ### Keys and Foreign keys
-- Entities may have a **key**: a set of attributes which uniquely identifies an entity.
-- Keys which consist of more than one attribute are called **primary keys**.
-- There can exist a number of possible **candidate keys**, for a given entity.
-- One candidate key is selected as a **primary key**.
+
+- Entities may have any number of **superkeys**:
+ a set of attributes which uniquely identifies an entity.
+ - **Candidate keys** are minimal superkeys:
+ no subset of a candidate key is a superkey itself.
+- There can exist a number of possible candidate keys, for a given entity.
+- One candidate key is selected by the DB designer as a **primary key**.
 - If there is no set of attributes which can *uniquely* identify an entity,
 it is a **weak entity**.
 - Weak entities must have a **foreign key**. A foreign key is generally the primary key of an entity to which the weak entity is related.
@@ -37,12 +40,12 @@ Attributes describe *properties* of entities.
 i.e (weight, height)
 - Multi-valued - consists of a number of values of the same type,
 i.e { email_address1, email_eddress2...}
-- An attribute of an entity may have a NULL value .
+- An attribute of an entity may have a NULL value.
 - A *derived attribute* is an attribute whose value can be derived from other attributes/entities.
 
 ### Relationships
 
-[Relationships](/notes/relationships.md) capture how entities are related to one another.
+[Relationships](/notes/relationships_types.md) capture how entities are related to one another.
 
 - An entity type may be related to any number of other entity types.
 - Each entity type that participates in a relationship plays a particular **role** in the relationship.
