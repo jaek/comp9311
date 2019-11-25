@@ -51,9 +51,22 @@ A **primary key** is a designated candidate key used throughout a DB to uniquely
 The **key constraint**:
 In any tuple of a relation, there cannot be two relations having the same for their primary key attributes.
 
-### Foregin Keys
+### Foreign Keys
 
-Foreing keys refer to tuples in other relations. 
+Foreign keys refer to tuples in other relations.
+In the relational model, a set of attributes *FK* from *R<sub>1</sub>*
+may be a foreign key of *R<sub>2</sub>* with primary key *P* if
+domain *D<sub>fk</sub>* of *FK* is the same as
+domain *D<sub>p</sub>* of *P*:
+
+| *R<sub>1</sub>*  |                  |     | *R<sub>2</sub>* |                 |
+| ---------------- | ---------------- | --- | --------------- | --------------- |
+| *FK*<sub>1</sub> | *FK*<sub>2</sub> | =   | *P*<sub>1</sub> | *P*<sub>2</sub> |
+
+
+
+
+
 
 
 
