@@ -9,7 +9,9 @@
 | "shoe"      | 1/4/1995         | "foot hat"  | 123      |
 | "underpant" | 4/7/1969         | "willy hat" | 12       |
 
-## SELECT - Projection
+## Queries
+
+### SELECT - Projection
 
 "SELECT" a subset of the specified relation(s), based on given criteria.
 
@@ -33,12 +35,12 @@ Yields
 This query corresponds to:
 Π<sub>{item_name, manufacture_date}</sub>(σ<sub>quantity > 100</sub>(Catalogue))
 
-## WHERE - Selection
+### WHERE - Selection
 
 The operation ````WHERE```` denotes (selects) a subset of a relation.
 In relational algebra, the selection operation uses the Greek letter *sigma* - σ.
 
-## AS - rename
+### AS - rename
 
 The operation ````AS```` takes an attribute *a* of relation *R*, and renames that attribute to *b*.
 
@@ -61,6 +63,34 @@ yields:
 | ----------- |
 | "underpant" |
 
+## Subqueries
+
+### IN - check if tuple is in relation
+
+The ````IN```` function takes a set of tuples *T*
+and returns ````TRUE```` if *T* is contained in *R*.
+
+Given the tuple (2):
+
+| Item_weights| ------ |
+| ----------- | ------ |
+| name        | weight |
+| "underpant" | 10.0   |
+| "leg"       | 1.2    |
+
+    SELECT *
+    FROM catalogue c,
+    WHERE c.item_name
+        IN (SELECT name
+            FROM Item_weights);
+
+Would yield the tuple:
+
+| item_name   | manufacture_date | description | quantity |
+| ----------- | ---------------- | ----------- | -------- |
+| "underpant" | 4/7/1969         | "willy hat" | 12       |
+
+### EXISTS - check if relation is non-empty
 
 ## Cheat Sheet
 
@@ -89,7 +119,9 @@ Unary operators take two inputs (relation *R*, *S*), and produce an output *R<su
 
 | operation         | SQL          | algebra       | predicate  |
 | ----------------- | ------------ | ------------- | ---------- |
+| division          |              | ÷             |            |
 | cartesian product | CROSS JOIN   | X             |            |
 | natural join      | NATURAL JOIN | ⋈             |            |
 | inner join        | INNER JOIN   | ⋈<sub>θ</sub> | *wθx, wθv* |
 | equi-join         |              |               | *w=x, w=v* |
+| left outer join   |              |               |            |
