@@ -37,6 +37,26 @@ Each attribute has an allowed range of values, referred to as its **domain**.
 
 
 As described in the [entity relationship model](/notes/1-entity-relationship_model.png),
+a **superkey** of a relation is any set of attributes which can be used to uniquely identify a tuple.
+For a given tuple, there may be several superkeys.
+
+
+A **candidate key** *C* is a *minimal superkey*:
+There is no superkey *S* of relation *R* which is a proper subset of *C*. There mayb be several candidate keys.
+
+A **primary key** is a designated candidate key used throughout a DB to uniquely identify tuples of a given relation.
+
+**Entity Integrity**: No attribute in a primary key can be NULL.
+
+The **key constraint**:
+In any tuple of a relation, there cannot be two relations having the same for their primary key attributes.
+
+### Foregin Keys
+
+Foreing keys refer to tuples in other relations. 
+
+
+
 
 ---
 
