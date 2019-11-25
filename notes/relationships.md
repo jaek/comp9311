@@ -2,11 +2,26 @@
 
 ## Entity types
 
+
+### Roles
+
+Entities play a *role* in a relationship.
+In cases where an entity participates in a number of roles,
+it is useful to distinguish relationships by name.
+For example, an entity Person might be related to an entity Movie as either an actor or director:
+
+![recursive ERD example](/notes/img/recursive_erd.png)
+
+The above relationship is described as a **recursive relationship**.
+
 ### Weak Entity
 
-A weak entity cannot be uniquely identified by its attributes alone. It must use
-a foreign key in conjunction with its attributes to create a primary key.
+A **weak entity** cannot be uniquely identified by its attributes alone.
 
+In order to uniquely identify a weak entity type,
+there needs to be both a **partial key**
+consisting of attributes of the weak entity,
+as well as a **foreign key**, which is a primary key of its parent entity.
 ### Identifying relationship
 
 In cases where a child entity cannot exist without a parent entity, their

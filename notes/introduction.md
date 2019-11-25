@@ -5,10 +5,12 @@ A database is a collection of related data that:
 - is *logically coherent* with some inherent meaning
 - has been designed and built with some purpose in mind
 
-## DBMS
+***
+
+## Database Management Systems
 
 A Database Management System (DBMS) is a collection of programs that facilitate
-the process of defining, constructing, manipulating and sharing a database
+the process of defining, constructing, manipulating and sharing a database:
 
 #### Defining
 
@@ -21,7 +23,7 @@ dictionary.
 Storing the data on some physical storage medium according to the definition,
 controlled by the DBMS
 
-#### Manipulating 
+#### Manipulating
 
 The DBMS provides functions to query, update, add or alter data.
 
@@ -30,31 +32,33 @@ The DBMS provides functions to query, update, add or alter data.
 The DBMS provides a framework for multiple users to manipulate data
 simultaneously without causing conflicts.
 
+***
+
+## What does a DBMS look like?
+
 #### Application programs
 
-Queries, transactions or requests for data are managed by application programs. 
+Queries, transactions or requests for data are managed by application programs.
 
 #### Other important functions
 
 - protecting the database from corruption or improper access/usage
 - maintaining the database over the course of its lifetime
 
----
 
 Ultimately, a general purpose DBMS is not strictly necessary - one could write
 bespoke applications to serve the same purposes, i.e a *special purpose* DBMS.
 Either way, the combination of a DBMS and a database is collectively referred to
 as a *database system*.
-    
-![a simplified diagram of a database system](simple_db.png)
 
+---
 ## Databases vs. traditional file processing
 
 ### Traditional
 
 - Each user defines, stores and implements the files necessary for their purposes, an
     approach resulting in redundancy. E.g an organisation might have different
-    departments with separate files on individual customers. 
+    departments with separate files on individual customers.
 
 ### Database
 
@@ -64,7 +68,7 @@ as a *database system*.
     organisation with a database only needs to update the ADDRESS field once in
     order for this change to be reflected in the data accessible to all users.
 
---- 
+---
 
 Ultimately, the database approach has the following characteristics:
 
@@ -74,8 +78,6 @@ Ultimately, the database approach has the following characteristics:
 
 ## How is a database 'self-describing'?
 
-The metadata of a DB describes the nature of data, as well as the relationships
-between data. In traditional file processing, individual applications manage the
-data
-
-
+The metadata of a DB describes the nature of data,
+as well as the relationships between data.
+In traditional file processing, individual applications manage the data
