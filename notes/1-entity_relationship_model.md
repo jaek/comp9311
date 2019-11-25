@@ -41,36 +41,7 @@ i.e (weight, height)
 - Multi-valued - consists of a number of values of the same type,
 i.e { email_address1, email_eddress2...}
 - An attribute of an entity may have a NULL value.
-- A *derived attribute* is an attribute whose value can be derived from other attributes/entities.
-
-### Relationships
-
-[Relationships](/notes/relationships_types.md) capture how entities are related to one another.
-
-- An entity type may be related to any number of other entity types.
-- Each entity type that participates in a relationship plays a particular **role** in the relationship.
-- Entities can play different roles in different relationships
-or more than one role in one relationship.
-
-- For example, an entity Person might be related to an entity Movie as either an actor or director:
-
-![recursive ERD example](/img/recursive_erd.png)
-
-*The above relationship is described as a **recursive relationship**.*
-- The **degree** of a relationship refers to the number of participating entity types.
-- Relationships can have **cardinality constraints**,
-which are rules that govern the number of individual entities which can participate in a relationship.
-
----
-
-## Entity Relationship Diagrams
-
-Entities and their relationships can be represented using an **Entity Relationship Diagram** (ERD).
-The notation used for ERD representation is as follows:
-
-![ERD notation](/notes/img/ERD_notation.png)
-
-[For more info on relationship types.](/notes/relationships_types.md)
+- A *derived attribute* is an attribute whose value can be derived from other attributes/entities
 
 ### Drawing an ERD
 

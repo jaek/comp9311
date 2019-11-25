@@ -64,13 +64,20 @@ domain *D<sub>p</sub>* of *P*:
 | *FK*<sub>1</sub> | *FK*<sub>2</sub> | =   | *P*<sub>1</sub> | *P*<sub>2</sub> |
 
 
+**Referential integrity**: The value of *FK* must occur in *R<sub>2</sub>*
+**OR** be entirely NULL
+
+### Integrity constraints
 
 
+With these definitions, we can describe a **relational database schema** as:
+* a set of relation/table schema {*R<sub>1</sub>*, *R<sub>2</sub>*, *R<sub>3</sub>*...}*R<sub>n</sub>*
+* a set of integrity constraints which ensure the uniformity of the database:
 
-
-
-
-
+    * Entity constraints - no attribute of a primary key can be null.
+    * Key constraints - no two tuples of a relation can share the same primary key.
+    * Referential constraints - if *R<sub>1</sub>* has a foreign key *FK* referring to  *R<sub>2</sub>*, tuples of *R<sub>1</sub>* must either be NULL or exist as a value in *R<sub>2</sub>*.
+    * Domain constraints - attributes of must fall within the specified domain.
 ---
 
 ## Representing the relational model
@@ -80,60 +87,161 @@ Taking the example of a simple database for an online shop:
 The online shop must keep track of customers,
 as well as the weight and contents of their orders.
 
-### ER model step by step:
-
-1. Identify entity types, and the attributes which describe them:
-
-An initial model might look like this:
-
-| Customer               | -             | -             |
-| ---------------------- | ------------- | ------------- |
-| <u>customer number</u> | {item number} | email address |
-
-| Item               | -      |
-| ------------------ | ------ |
-| <u>item number</u> | weight |
-
-Each entity type is uniquely identified with a primary key.
-
-Note that:
-- Each item entity can belong to many orders
-- Each order can have many items
-- Each customer can have many orders
-
-**Relational databases do not support many-to-many relationships.**
-Therefore, we must introduce some junction entities.
-This entities will describe order details:
-
-| Order               | -                      |
-| ------------------- | ---------------------- |
-| <u>order number</u> | <u>customer number</u> |
-
-| Order_line          | -                  | -        |
-| ------------------- | ------------------ | -------- |
-| <u>order_number</u> | <u>item_number</u> | quantity |
-
-And we can remove some attributes from the Customer entity:
-
-| Customer               | -             |
-| ---------------------- | ------------- |
-| <u>customer number</u> | email address |
-
-
-2. Define the relationship between entities.
-
-The following is true:
-- Each customer can have many orders.
-- Each order can have only one customer.
-- Orders can can have a number of lines.
-- Each order line refers to an item
-
-This yields the following relational model representation:
-
-![relational model example diagram](/img/example_relational_model.png)
-
 ---
 
 ## Practice
 
-Refer to [practice one](/practice/01.pdf) for details.
+Refer to [practice one](/practice/01.pdf) and [entity relationship models](/notes/1-entity_relationship_modles.md) for details on ER representation.
+
+Using this ER diagram, describing the organisation of a construction company, we will describe a relational model.
+
+![er diagram](/notes/img/practice1_step2.png)
+
+1. For each regular entity *E* in the ERD,
+create a relation with the same  **simple** attributes.
+Then select a primary key from the candidate keys for *E*:
+
+| Worker           |        |      |              |
+| ---------------- | ------ | ---- | ------------ |
+| <u>worker_id</u> | salary | name | phone_number |
+
+| Team           |           |               |
+| -------------- | --------- | ------------- |
+| <u>team_id</u> | team_name | member_number |
+
+| Order    |          |          |       |
+| -------- | -------- | -------- | ----- |
+| order_id | duration | location | price |
+
+| Vehicle             |        |       |               |
+| ------------------- | ------ | ----- | ------------- |
+| <u>plate_number</u> | colour | model | purchase_date |
+
+
+2. For each weak entity type *W*, create a new relatio,n *R* with:
+    *  All simple attributes (and simple components of composite attributes) of W,
+    and include as a foreign key the prime attributes of the relation derived from E.
+    * The foreign key plus the partial key of W.
+
+This ERD does not feature any weak entity types. As an example:
+
+![weak entity relationship](/notes/img/weak_example.png)
+
+| Flavour                |             |        |
+| ---------------------- | ----------- | ------ |
+| <u>manufacturer id</u> | <u>name</u> | colour |
+
+3. For each 1:1 relationship *X* between relations *A* and *B*:
+    * Choose one relation - e.g *A*
+    * Add the attributes of the primary key of *B* to *A* as a foreign key
+    * Add the attributes of *X* to *A*
+
+| Worker           |        |      |              |
+| ---------------- | ------ | ---- | ------------ |
+| <u>worker_id</u> | salary | name | phone_number |
+
+| Team           |           |               |
+| -------------- | --------- | ------------- |
+| <u>team_id</u> | team_name | member_number |
+
+becomes:
+
+| Team           |            |           |               |
+| -------------- | ---------- | --------- | ------------- |
+| <u>team_id</u> | manager_id | team_name | member_number |
+
+
+4. For each 1:N relationship *X* between *A* and *B*, e.g *Team* and *Worker*:
+
+* Add the attribute of the primary key of *A* to *B* as a foreign key.
+
+| Worker           |        |      |              |         |
+| ---------------- | ------ | ---- | ------------ | ------- |
+| <u>worker_id</u> | salary | name | phone_number | team_id |
+
+
+* Add any simple attributes of *X* to *B*.
+
+For example, if the relation ````member_of```` had an attribute ````start_date````:
+
+| Worker           |        |      |              |         |            |
+| ---------------- | ------ | ---- | ------------ | ------- | ---------- |
+| <u>worker_id</u> | salary | name | phone_number | team_id | start_date |
+
+
+5. For each M:N relationship *X* between entities *A* and *B*,
+create a new relation *R*.
+Give *R* the the keys of *A* and *B* as foreign keys, as well as the simple attributes of *X*.
+
+For example, the relation ````driver_of```` between ````Worker```` and ````Vehicle````:
+
+![converting an m to n relationship to relational](/notes/img/practise1_step3.png)
+
+| Driver           |                     |                   |
+| ---------------- | ------------------- | ----------------- |
+| <u>worker_id</u> | <u>plate_number</u> | kilometers_driven |
+
+6. For each multivalued attribute *A* of relation *R*,
+create a new relation *R<sub>2</sub>* with the following attributes:
+    * *A*, with the key of *E* as a foreign key.
+    * All attributes of *R<sub>2</sub>* as the primary key.
+
+![weak entity relationship](/notes/img/weak_example.png)
+
+| Allergens_list         |             |                 |
+| ---------------------- | ----------- | --------------- |
+| <u>manufacturer id</u> | <u>name</u> | <u>allergen</u> |
+
+7. For each n-ary relationship *R* bewtween relations *A* and *B*,
+create a new relation with:
+    * The the keys of *A* and *B* as foreign keys,
+     as well as the simple attributes of *X*.
+     * If one of the relationships is N=1, use that relations primary key as primary key for the new relation:
+
+---
+
+This process yields the following Relational Model Representation:
+
+| Order    |          |          |       |
+| -------- | -------- | -------- | ----- |
+| order_id | duration | location | price |
+
+| Team           |            |           |               |
+| -------------- | ---------- | --------- | ------------- |
+| <u>team_id</u> | manager_id | team_name | member_number |
+
+| Worker           |        |      |              |         |            |
+| ---------------- | ------ | ---- | ------------ | ------- | ---------- |
+| <u>worker_id</u> | salary | name | phone_number | team_id | start_date |
+
+| Driver           |                     |                   |
+| ---------------- | ------------------- | ----------------- |
+| <u>worker_id</u> | <u>plate_number</u> | kilometers_driven |
+
+| Vehicle             |        |       |               |
+| ------------------- | ------ | ----- | ------------- |
+| <u>plate_number</u> | colour | model | purchase_date |
+
+With the relationships:
+
+| source | destination |
+| ------ | ----------- |
+| team   | order       |
+| team   | worker      |
+| worker | team        |
+| driver | worker      |
+| driver | vehicle     |
+
+#### Question 6 - Cardinality Ratios
+
+| Entity 1     | Cardinality Ratio | Entity 2             |
+| ------------ | ----------------- | -------------------- |
+| Student      | 1:N               | SocialSecurityNumber |
+| Student      | N:M               | Teacher              |
+| Classroom    | N:M               | Wall                 |
+| Country      | 1:1               | CurrentPresident     |
+| Course       | N:M               | Textbook             |
+| Item         | N:1               | Order                |
+| Student      | N:M               | Class                |
+| Instructor   | 1:1               | Office               |
+| auction_item | 1:N               | auction_bid          |
