@@ -46,9 +46,12 @@ In relational algebra, the rename operation uses the Greek letter *rho* - ρ.
 
     SELECT item_name AS name
     FROM catalogue
-    WHERE item_name IS NOT NULL;
+    WHERE ((item_name IS NOT "NULL")
+        AND
+          description="willy hat");
 
-or in relational algebra:
+
+expressed in relational algebra notation:
 
 ρ<sub>(item_name/name)Π<sub>{item_name}</sub>(σ<sub>item_name != "NULL" AND description="willy hat"</sub> (Catalogue))
 
@@ -56,6 +59,37 @@ yields:
 
 | Name        |
 | ----------- |
-| "hat"       |
-| "shoe"      |
 | "underpant" |
+
+
+## Cheat Sheet
+
+### Unary Operators
+
+Unary operators take one input (a relation *R*), and produce an output *R<sub>1</sub>.*
+
+* Relation *R* with attributes (*a*<sub>1</sub>, *a*<sub>2</sub>, *a*<sub>3</sub>... *a*<sub>n</sub>)
+* *A* ⊂ *R*
+* *w, x ∊ *R*
+* *y, z ∊ S*
+* *B* is the set of binary operators { <, ≤, =, ≠, >, ≥ }
+* *θ* ∊ *B*
+* *v* is some constant value
+
+| operation  | SQL    | algebra | predicate  |
+| ---------- | ------ | ------- | ---------- |
+| projection | SELECT | π / Π   | *A*        |
+| selection  | WHERE  | σ       | *wθx, wθv* |
+| rename     | AS     | ρ       | *wθv*      |
+
+
+### Binary Operators
+
+Unary operators take two inputs (relation *R*, *S*), and produce an output *R<sub>1</sub>.*
+
+| operation         | SQL          | algebra       | predicate  |
+| ----------------- | ------------ | ------------- | ---------- |
+| cartesian product | CROSS JOIN   | X             |            |
+| natural join      | NATURAL JOIN | ⋈             |            |
+| inner join        | INNER JOIN   | ⋈<sub>θ</sub> | *wθx, wθv* |
+| equi-join         |              |               | *w=x, w=v* |
