@@ -54,7 +54,7 @@ or more than one role in one relationship.
 
 - For example, an entity Person might be related to an entity Movie as either an actor or director:
 
-![recursive ERD example](/notes/img/recursive_erd.png)
+![recursive ERD example](/img/recursive_erd.png)
 
 *The above relationship is described as a **recursive relationship**.*
 - The **degree** of a relationship refers to the number of participating entity types.
