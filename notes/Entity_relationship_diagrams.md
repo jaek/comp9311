@@ -13,11 +13,11 @@ Entity A   | -
 ---------- | -----------
 Attribute1 | Attribute 2
 
-&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥⭥
+&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⭥relation⭥
 
-&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥⭥
+&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥
 
 Attribute1 | Attribute3
 ---------- | ----------
@@ -47,8 +47,9 @@ Attributes describe *properties* of entities.
 
 ### Relationships
 
-- Relationships capture how entities are related to one another.
+[Relationships](relationships.md) capture how entities are related to one another.
 - In the ER model, relationships can have attributes.
+- relationships can have cardinality constraints (one to many, many to one)
 
 ## Cheatsheet
 
