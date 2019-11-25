@@ -1,24 +1,46 @@
 # The Relational Model
 
-Entity A   | -
----------- | -----------
-Attribute1 | Attribute 2
+The relational model is a model for database systems.
+Information is described in terms of inter-connected relations.
+Relational models are described using either mathematical or data oriented terms:
 
-&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥
+| mathematical | data-oriented | ER model    |
+| ------------ | ------------- | ----------- |
+| relation     | table         | entity type |
+| tuple        | record        | entity      |
+| attribute    | field/column  | attribute   |
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⭥relation⭥
+*Note the similarity between ER and Relational Model concepts*
 
-&nbsp;&nbsp;&nbsp;&nbsp;⭥⭥⭥⭥⭥⭥
+A relation or table can be represented as a  grid.
+Each column represents an attribute/field
+and each row represents a tuple/instance/record:
 
-Attribute1 | Attribute3
----------- | ----------
-Entity B   | -
+|         | Relation / Table A |           |           |
+| ------- | ------------------ | --------- | --------- |
+| Tuple 1 | attribute          | attribute | attribute |
+| Tuple 2 | attribute          | attribute | attribute |
+| Tuple 3 | attribute          | attribute | attribute |
 
-*Entity A is related to entity B because they share attribute 1*
+Each attribute has an allowed range of values, referred to as its **domain**.
+
+### mathematical description:
+
+* A domain *D<sub>1</sub>* consists of **atomic** values of one type.
+* For attribute *A* with domain *D*, *A<sub>1</sub>* ∈ *D<sub></sub>*
+* A **relation schema** *R* is a set of attributes, i.e:
+
+ *R(A<sub>1</sub>, A<sub>2</sub>, A<sub>3</sub>...A<sub>n</sub>)*
+
+
+### keys
+
+
+As described in the [entity relationship model](/notes/1-entity-relationship_model.png),
 
 ---
 
-## Represting the relational model
+## Representing the relational model
 
 Drawing a relational model representation of a database consists of a number of steps.
 Taking the example of a simple database for an online shop:

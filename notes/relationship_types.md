@@ -11,6 +11,13 @@ as the number of entities involved.
 In cases where a child entity cannot exist without a parent entity,
 their relationship is referred to as an identifying relationship.
 The child entity is a *weak entity* and can only be identified using both the parent primary key and its own attributes.
+For example:
+
+*Each chip manufacturer has several different flavours*
+
+In this case, a database might represent each flavour as a child entity of BrandName:
+
+![identifying relationship](/notes/img/identifying.png)
 
 ### Cardinality constraints
 

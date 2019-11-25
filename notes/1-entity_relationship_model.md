@@ -45,7 +45,7 @@ i.e { email_address1, email_eddress2...}
 
 ### Relationships
 
-[Relationships](/notes/relationships_types.md) capture how entities are related to one another. 
+[Relationships](/notes/relationships_types.md) capture how entities are related to one another.
 
 - An entity type may be related to any number of other entity types.
 - Each entity type that participates in a relationship plays a particular **role** in the relationship.
@@ -66,3 +66,52 @@ which are rules that govern the number of individual entities which can particip
 ## Entity Relationship Diagrams
 
 Entities and their relationships can be represented using an **Entity Relationship Diagram** (ERD).
+The notation used for ERD representation is as follows:
+
+![ERD notation](/notes/img/ERD_notation.png)
+
+[For more info on relationship types.](/notes/relationships_types.md)
+
+### Drawing an ERD
+
+Using the light rail example in [practice one](/practice/01.pdf):
+
+#### 1 - Identify all entities in a system.
+
+| Worker    |      |              |        |
+| --------- | ---- | ------------ | ------ |
+| worker_id | name | phone_number | salary |
+
+| Team    |           |               |
+| ------- | --------- | ------------- |
+| team_id | team_name | member_number |
+
+| Vehicle      |       |        |               |
+| ------------ | ----- | ------ | ------------- |
+| plate_number | model | colour | purchase_date |
+
+| Order    |          |          |       |
+| -------- | -------- | -------- | ----- |
+| order_id | location | duration | price |
+
+
+#### 2 - Relationship Matrix:
+
+|         | Worker    | Team          | Vehicle   | Order    |
+| ------- | --------- | ------------- | --------- | -------- |
+| Worker  |           | leader/member | driver_of |          |
+| Team    | works_for |               | owns      | works_on |
+| Vehicle | driven_by | owned_by      |           |          |
+| Order   |           | worked_by     |           |          |
+
+#### 3 - Initial Diagram:
+
+With the entities and relationships defined, we sketch a basic diagram:
+
+![step_one](/notes/img/practice1_step1.png)
+
+#### 4 - Describe cardinalities
+
+![step_two](/notes/img/practice1_step2.png)
+
+---
