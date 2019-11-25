@@ -1,5 +1,7 @@
 # SQL Operations
 
+**(1)** The ````Catalogue```` relation:
+
 | Catalogue   |                  |             |          |
 | ----------- | ---------------- | ----------- | -------- |
 | item_name   | manufacture_date | description | quantity |
@@ -14,7 +16,7 @@
 The ````SELECT```` operation is analogous to the relational algebra operation *projection*.
 Represented by an upper case *pi* symbol - Π
 
-For example, the following query:
+For example, the following query on (1):
 
     SELECT item_name, manufacture_date -- attributes
     FROM catalogue                     -- relation(s)
@@ -41,3 +43,19 @@ In relational algebra, the selection operation uses the Greek letter *sigma* - �
 The operation ````AS```` takes an attribute *a* of relation *R*, and renames that attribute to *b*.
 
 In relational algebra, the rename operation uses the Greek letter *rho* - ρ.
+
+    SELECT item_name AS name
+    FROM catalogue
+    WHERE item_name IS NOT NULL;
+
+or in relational algebra:
+
+ρ<sub>(item_name/name)Π<sub>{item_name}</sub>(σ<sub>item_name != "NULL" AND description="willy hat"</sub> (Catalogue))
+
+yields:
+
+| Name        |
+| ----------- |
+| "hat"       |
+| "shoe"      |
+| "underpant" |
