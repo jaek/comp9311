@@ -6,12 +6,12 @@ based on the nature of the relationship,
 the role of the entities involved,
 as the number of entities involved.
 
-
 ### Identifying relationship
 
 In cases where a child entity cannot exist without a parent entity,
 their relationship is referred to as an identifying relationship.
 The child entity is a *weak entity* and can only be identified using both the parent primary key and its own attributes.
+
 ### Cardinality constraints
 
 A **cardinality ratio constraint**:
@@ -54,10 +54,8 @@ and each Author can have written several publications*
 ### mandatory participation
 
 **Mandatory/Total Participation** relationships are relationships in which one or more entities *must* be present.
-For example:
+In the ER model, this is represented with a double line, for example:
 
 *An author may have written zero or more books,but each book has at least one author.*
 
 ![total participation](/notes/img/total_participation.png)
-
-### optional participation

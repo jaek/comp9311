@@ -45,7 +45,7 @@ i.e { email_address1, email_eddress2...}
 
 ### Relationships
 
-[Relationships](/notes/relationships_types.md) capture how entities are related to one another.
+[Relationships](/notes/relationships_types.md) capture how entities are related to one another. 
 
 - An entity type may be related to any number of other entity types.
 - Each entity type that participates in a relationship plays a particular **role** in the relationship.

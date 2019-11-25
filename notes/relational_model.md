@@ -1,4 +1,4 @@
-
+# The Relational Model
 
 Entity A   | -
 ---------- | -----------
@@ -18,18 +18,14 @@ Entity B   | -
 
 ---
 
-## Drawing ER model
+## Represting the relational model
 
-Drawing an ER model consists of a number of steps.
-Taking the example of a simple database for an online shop.
+Drawing a relational model representation of a database consists of a number of steps.
+Taking the example of a simple database for an online shop:
 The online shop must keep track of customers,
 as well as the weight and contents of their orders.
 
-### ER model tips:
-
-- Keys are indicated by underlining.
-- Composite attributes use ()
-- Multi-valued attributes use {}
+### ER model step by step:
 
 1. Identify entity types, and the attributes which describe them:
 
@@ -79,7 +75,7 @@ The following is true:
 
 This yields the following relational model representation:
 
-![relational model example diagram](example_relational_model.png)
+![relational model example diagram](/img/example_relational_model.png)
 
 ---
 
