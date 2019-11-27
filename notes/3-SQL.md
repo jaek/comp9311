@@ -188,6 +188,23 @@ Aggregation operators in SQL apply to a list of numeric values in one column:
 | COUNT    | The number of values in *X*        |
 
 ---
+# SQL data types
+
+Refer to [this SQL file](/scripts/notes.sql) for more info.
+
+SQL data types represent the most fundamental form of constraint/domain checking.
+The type system ensures that data can only be stored in certain formats.
+
+* Numbers: integers and real numbers
+* Characters: Strings and characters of different lengths
+* Dates and times
+
+In addition, it is possible to specify more complex types.  
+
+These types can be used to enforce more complex domain membership conditions, i.e
+we can ensure that a given column never contains a negative number, or that a piece of
+text never contains the phrase ````')DROP TABLE students;````
+
 
 ## Cheat Sheet
 
