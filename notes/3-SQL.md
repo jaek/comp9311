@@ -10,6 +10,7 @@
 | "underpant" | 4/7/1969         | "willy hat" | 12       |
 
 ## Queries
+---
 
 ### SELECT - Projection
 
@@ -64,13 +65,14 @@ yields:
 | "underpant" |
 
 ## Subqueries
+---
 
 ### IN - check if tuple is in relation
 
 The ````IN```` function takes a set of tuples *T*
 and returns ````TRUE```` if *T* is contained in *R*.
 
-Given the tuple (2):
+Given the tuple ````Item_weights```` (2):
 
 | Item_weights| ------ |
 | ----------- | ------ |
@@ -91,6 +93,101 @@ Would yield the tuple:
 | "underpant" | 4/7/1969         | "willy hat" | 12       |
 
 ### EXISTS - check if relation is non-empty
+
+For example, to find out if there are any items in ````Item_weights```` with the same name as an item in ````Catalogue````:
+
+    SELECT *
+    FROM catalogue c
+    WHERE EXISTS
+        (SELECT name
+         FROM Item_weights w
+         WHERE w.name = c.item_name
+          );
+
+Which would yield the tuples:
+
+| item_name   | manufacture_date | description | quantity |
+| ----------- | ---------------- | ----------- | -------- |
+| "underpant" | 4/7/1969         | "willy hat" | 12       |
+
+Or conversely, to find all items in our catalogue which do not have corresponding tuples in ````Item_weights````:
+
+
+    SELECT *
+    FROM catalogue c
+    WHERE NOT EXISTS
+        (SELECT name
+         FROM Item_weights w
+         WHERE w.name = c.item_name
+          );
+
+
+| Catalogue   |                  |             |          |
+| ----------- | ---------------- | ----------- | -------- |
+| item_name   | manufacture_date | description | quantity |
+| "hat"       | 11/12/1998       | "hat"       | 1235     |
+| "shoe"      | 1/4/1995         | "foot hat"  | 123      |
+
+## Set Operations
+---
+
+Set operations in SQL take a number of query results and combine them into a single result set.
+
+### Union
+
+The ````UNION```` operation combines the output of two queries *Q1* and *Q2*
+into a single result table consisting of all matching tuples.
+Consider the relation ````new_stock```` (3)
+
+| new_stock |                  |
+| --------- | ---------------- |
+| item_name | manufacture_date |
+| "hat"     | 11/12/2007       |
+| "shoe"    | 1/4/1995         |
+
+    SELECT c.item_name, c.manufacture_date
+    FROM Catalogue c
+    UNION
+    SELECT *
+    FROM new_stock;
+
+| item_name | manufacture_date |
+| --------- | ---------------- |
+| "hat"     | 11/12/2007       |
+| "hat"     | 11/12/1998       |
+| "shoe"    | 1/4/1995         |
+
+### Intersection
+
+The SQL INTERSECT operator takes the results of two queries and returns only rows that appear in both result sets.
+
+The following example INTERSECT query returns all rows from the Orders table where Quantity is between 50 and 100:
+
+    SELECT *
+    FROM   Orders
+    WHERE  Quantity BETWEEN 1 AND 100
+    INTERSECT
+    SELECT *
+    FROM   Orders
+    WHERE  Quantity BETWEEN 50 AND 200;
+
+### Difference
+
+---
+
+## Aggregation
+
+Aggregation operators in SQL apply to a list of numeric values in one column:
+
+| operator | description                        |
+| -------- | ---------------------------------- |
+| SUM      | The sum total of all values in *X* |
+| AVG      | The average of all values in *X*   |
+| MIN      | The smallest value in *X*          |
+| MAX      | The largest value in *X*           |
+| COUNT    | The number of values in *X*        |
+
+---
 
 ## Cheat Sheet
 
