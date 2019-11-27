@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS real_number_types;
 DROP TABLE IF EXISTS basic_number_types;
 DROP TABLE IF EXISTS date_and_time;
 DROP TABLE IF EXISTS char_types;
+DROP TABLE IF EXISTS constrained_dataa;
 /* Create a new schema */
 CREATE SCHEMA test_schema;
 
@@ -43,3 +44,38 @@ CREATE TABLE char_types
 );
 
 /* The type system is the most basic form of domain constraint */
+
+INSERT INTO basic_number_types (_2_byte_int)
+VALUES
+(
+  32767 -- this insert will succeed
+);
+INSERT INTO basic_number_types (_2_byte_int)
+VALUES
+(
+  32768 -- this insert will fail with:
+        -- ERROR:  smallint out of range
+);
+
+/* We can enforce more granular constraints with the constraint keyword */
+
+CREATE TABLE constrained_data
+(
+  --constraints can be unnamed:
+  constrained_varchar VARCHAR(20) CHECK(constrained_varchar IN ('Yes', 'No')),
+  --or named:
+  constrained_integer INTEGER CONSTRAINT positive_number CHECK (constrained_integer > 0)
+);
+
+
+INSERT INTO constrained_data(constrained_varchar)
+VALUES
+(
+  'Yes' -- This INSERT will succeed
+);
+
+INSERT INTO constrained_data(constrained_varchar)
+VALUES
+(
+  'Maybe' -- This INSERT will fail
+);

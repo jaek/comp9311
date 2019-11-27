@@ -205,6 +205,9 @@ These types can be used to enforce more complex domain membership conditions, i.
 we can ensure that a given column never contains a negative number, or that a piece of
 text never contains the phrase ````')DROP TABLE students;````
 
+From the PostgreSQL docs:
+> Data types are a way to limit the kind of data that can be stored in a table. For many applications, however, the constraint they provide is too coarse. For example, a column containing a product price should probably only accept positive values. But there is no standard data type that accepts only positive numbers. Another issue is that you might want to constrain column data with respect to other columns or rows. For example, in a table containing product information, there should be only one row for each product number.
+
 
 ## Cheat Sheet
 
